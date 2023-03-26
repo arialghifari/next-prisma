@@ -1,91 +1,33 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
+import Link from 'next/link';
+import React from 'react';
 
-const inter = Inter({ subsets: ['latin'] })
-
-export default function Home() {
+export default async function Page() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <div className='w-[1000px] mx-auto pt-20'>
+      <Link
+        href={'/create'}
+        className='px-3 py-2 bg-zinc-900 hover:bg-zinc-800 rounded-md text-white'
+      >
+        Create
+      </Link>
+      <div className='flex flex-col mt-8 gap-4'>
+        {[0, 1, 2, 3, 4, 5].map((post: any, index: number) => (
+          <div key={index} className='border rounded-md p-4 flex flex-col'>
+            <h2 className='text-sm'>ID: {post.id}</h2>
+            <h1>{post.title}</h1>
+            <p>{post.content}</p>
+            <div className='inline-flex mt-4 gap-4'>
+              <button className='text-xs hover:text-zinc-800 font-bold'>
+                Update
+              </button>
+              <button className='text-xs text-red-500 hover:text-red-400 font-bold'>
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    </div>
+  );
 }
+
