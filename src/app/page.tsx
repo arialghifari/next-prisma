@@ -1,11 +1,10 @@
-import { PrismaClient } from '@prisma/client'
 import Link from 'next/link'
 
-const prisma = new PrismaClient()
-
 async function getPosts() {
-  const posts = await prisma.post.findMany()
-  return posts
+  const res = await fetch(`${process.env.BASE_URL}/api/post`, {
+    next: { revalidate: 0 },
+  })
+  return await res.json()
 }
 
 export default async function Page() {
